@@ -36,7 +36,7 @@ const PaginationControls = memo(function PaginationControls({
   }, [pagination.page, pagination.hasNext, onPageChange])
 
   return (
-    <div className="flex items-center justify-between gap-4 rounded-lg border border-border bg-card p-4">
+    <div className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
       {/* Left: Page info */}
       <div className="text-sm text-muted-foreground">
         Page <span className="font-semibold text-foreground">{pagination.page}</span> of{' '}
@@ -56,7 +56,7 @@ const PaginationControls = memo(function PaginationControls({
           size="sm"
           onClick={handlePrevious}
           disabled={!pagination.hasPrev}
-          className="gap-1"
+          className="gap-1 rounded-xl transition-all hover:bg-primary/10 hover:border-primary/50"
         >
           <ChevronLeft className="h-4 w-4" />
           Previous
@@ -66,7 +66,7 @@ const PaginationControls = memo(function PaginationControls({
           size="sm"
           onClick={handleNext}
           disabled={!pagination.hasNext}
-          className="gap-1"
+          className="gap-1 rounded-xl transition-all hover:bg-primary/10 hover:border-primary/50"
         >
           Next
           <ChevronRight className="h-4 w-4" />
@@ -75,10 +75,10 @@ const PaginationControls = memo(function PaginationControls({
 
       {/* Right: Page size selector */}
       <Select value={pagination.pageSize.toString()} onValueChange={(val) => onPageSizeChange(parseInt(val, 10))}>
-        <SelectTrigger className="w-24">
+        <SelectTrigger className="w-32 rounded-xl">
           <SelectValue />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="rounded-xl">
           {PAGE_SIZE_OPTIONS.map((size) => (
             <SelectItem key={size} value={size.toString()}>
               {size} per page

@@ -43,59 +43,65 @@ const CreatorsTable = memo(function CreatorsTable({
         variant="ghost"
         size="sm"
         onClick={() => onSort(columnKey)}
-        className="h-auto gap-1 p-0 font-semibold hover:bg-transparent"
+        className="h-auto gap-1.5 p-0 font-semibold hover:bg-transparent hover:text-primary transition-all"
       >
         {label}
         {isActive && (
-          isAsc ? (
-            <ArrowUp className="h-4 w-4" />
-          ) : (
-            <ArrowDown className="h-4 w-4" />
-          )
+          <span className="transition-transform duration-200">
+            {isAsc ? (
+              <ArrowUp className="h-4 w-4" />
+            ) : (
+              <ArrowDown className="h-4 w-4" />
+            )}
+          </span>
         )}
       </Button>
     )
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border border-border shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-border shadow-sm bg-card">
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
-            <TableRow className="border-b border-border/80 hover:bg-transparent">
-              <TableHead className="font-semibold h-12">Name</TableHead>
-              <TableHead className="text-right font-semibold h-12">
-                <SortButton columnKey="followers" label="Followers" />
+            <TableRow className="border-b border-border bg-muted/40 hover:bg-muted/40">
+              <TableHead className="font-semibold h-14">Name</TableHead>
+              <TableHead className="text-right font-semibold h-14">
+                <div className="flex justify-end">
+                  <SortButton columnKey="followers" label="Followers" />
+                </div>
               </TableHead>
-              <TableHead className="text-right font-semibold h-12">
-                <SortButton columnKey="revenue" label="Revenue" />
+              <TableHead className="text-right font-semibold h-14">
+                <div className="flex justify-end">
+                  <SortButton columnKey="revenue" label="Revenue" />
+                </div>
               </TableHead>
-              <TableHead className="font-semibold h-12">Status</TableHead>
-              <TableHead className="font-semibold h-12">Created At</TableHead>
+              <TableHead className="font-semibold h-14">Status</TableHead>
+              <TableHead className="font-semibold h-14">Created At</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {creators.map((creator, idx) => (
               <TableRow 
                 key={creator.id}
-                className={`h-14 transition-colors duration-200 ${
-                  idx % 2 === 0 ? 'bg-background/50' : 'bg-card/50'
-                } hover:bg-accent/50 border-b border-border/40`}
+                className={`h-16 transition-all duration-200 cursor-pointer ${
+                  idx % 2 === 0 ? 'bg-background/50' : 'bg-card'
+                } hover:bg-accent/10 border-b border-border/40 last:border-0`}
               >
                 <TableCell className="font-medium text-foreground">{creator.name}</TableCell>
                 <TableCell className="text-right text-foreground tabular-nums">
                   {creator.followers.toLocaleString()}
                 </TableCell>
-                <TableCell className="text-right text-foreground tabular-nums">
+                <TableCell className="text-right text-foreground tabular-nums font-medium">
                   {formatCurrency(creator.revenue)}
                 </TableCell>
                 <TableCell>
                   {creator.active ? (
-                    <Badge className="bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/30">
+                    <Badge className="rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/25 transition-colors">
                       Active
                     </Badge>
                   ) : (
-                    <Badge variant="outline" className="border-muted-foreground/30 text-muted-foreground">
+                    <Badge variant="outline" className="rounded-full border-muted-foreground/30 text-muted-foreground hover:bg-muted/30 transition-colors">
                       Inactive
                     </Badge>
                   )}

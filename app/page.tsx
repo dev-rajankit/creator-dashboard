@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Sun, Moon, LayoutDashboard, X } from 'lucide-react'
+import { Sun, Moon, LayoutDashboard, X, Filter } from 'lucide-react'
 
 export default function Home() {
   const { theme, setTheme } = useTheme()
@@ -80,9 +80,9 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-10 flex items-start justify-between">
-          <div className="flex items-start gap-3">
-            <div className="mt-1">
+        <div className="mb-12 flex items-start justify-between border-b border-border/50 pb-8">
+          <div className="flex items-start gap-4">
+            <div className="mt-1 p-3 rounded-2xl bg-primary/10">
               <LayoutDashboard className="h-8 w-8 text-primary" />
             </div>
             <div>
@@ -94,7 +94,7 @@ export default function Home() {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="rounded-lg border border-border hover:bg-accent"
+            className="rounded-xl border border-border hover:bg-accent hover:border-primary/50 transition-all"
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? (
@@ -110,8 +110,12 @@ export default function Home() {
 
         {/* Filters Section */}
         <div className="mb-8">
-          <div className="rounded-lg border border-border bg-card shadow-sm p-6">
-            <div className="space-y-5">
+          <div className="rounded-2xl border border-border bg-card shadow-sm p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <Filter className="h-5 w-5 text-primary" />
+              <h2 className="text-lg font-semibold text-foreground">Filters</h2>
+            </div>
+            <div className="space-y-6">
               {/* Search */}
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-3">
@@ -121,12 +125,12 @@ export default function Home() {
                   placeholder="Find by name..."
                   value={searchQuery}
                   onChange={(e) => handleSearchChange(e.target.value)}
-                  className="w-full h-10"
+                  className="w-full h-11 rounded-xl transition-all focus:ring-2 focus:ring-primary/20"
                 />
               </div>
 
               {/* Divider */}
-              <div className="h-px bg-border/50" />
+              <div className="h-px bg-border" />
 
               {/* Active Filter */}
               <div className="flex items-center justify-between">
@@ -140,28 +144,28 @@ export default function Home() {
               {/* Sort Status & Reset */}
               {hasActiveFilters && (
                 <>
-                  <div className="h-px bg-border/50" />
+                  <div className="h-px bg-border" />
                   <div className="flex items-center justify-between gap-3 flex-wrap">
                     <div className="flex items-center gap-2 flex-wrap">
                       {sortKey && (
-                        <Badge variant="secondary" className="gap-1">
+                        <Badge variant="secondary" className="gap-1 rounded-full">
                           {sortKey} {sortDirection === 'asc' ? '↑' : '↓'}
                         </Badge>
                       )}
                       {searchQuery && (
-                        <Badge variant="secondary" className="gap-1">
+                        <Badge variant="secondary" className="gap-1 rounded-full">
                           Search: "{searchQuery}"
                         </Badge>
                       )}
                       {showActiveOnly && (
-                        <Badge variant="secondary">Active</Badge>
+                        <Badge variant="secondary" className="rounded-full">Active</Badge>
                       )}
                     </div>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={handleResetFilters}
-                      className="gap-2"
+                      className="gap-2 rounded-xl hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-all"
                     >
                       <X className="h-4 w-4" />
                       Reset

@@ -26,25 +26,25 @@ const MetricCards = memo(function MetricCards({ metrics }: MetricCardsProps) {
 
   const metricConfigs: Record<string, MetricConfig> = {
     total: {
-      icon: <Users className="h-5 w-5" />,
+      icon: <Users className="h-6 w-6" />,
       accentColor: 'from-blue-500',
       gradientFrom: 'from-blue-500/10',
       label: 'Total Creators',
     },
     active: {
-      icon: <TrendingUp className="h-5 w-5" />,
+      icon: <TrendingUp className="h-6 w-6" />,
       accentColor: 'from-emerald-500',
       gradientFrom: 'from-emerald-500/10',
       label: 'Active Creators',
     },
     revenue: {
-      icon: <DollarSign className="h-5 w-5" />,
+      icon: <DollarSign className="h-6 w-6" />,
       accentColor: 'from-purple-500',
       gradientFrom: 'from-purple-500/10',
       label: 'Total Revenue',
     },
     average: {
-      icon: <BarChart3 className="h-5 w-5" />,
+      icon: <BarChart3 className="h-6 w-6" />,
       accentColor: 'from-cyan-500',
       gradientFrom: 'from-cyan-500/10',
       label: 'Avg Revenue/Active',
@@ -58,20 +58,20 @@ const MetricCards = memo(function MetricCards({ metrics }: MetricCardsProps) {
     config: MetricConfig
     value: string | number
   }) => (
-    <Card className="relative overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group hover:border-primary/50">
-      <div className={`absolute left-0 top-0 h-full w-1 bg-gradient-to-b ${config.accentColor}`} />
+    <Card className="relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group hover:-translate-y-0.5 cursor-pointer">
+      <div className={`absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b ${config.accentColor} to-transparent`} />
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
+          <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
             {config.label}
           </CardTitle>
-          <div className={`text-muted-foreground group-hover:text-primary transition-colors duration-300`}>
+          <div className={`text-muted-foreground/60 group-hover:text-primary transition-colors duration-300`}>
             {config.icon}
           </div>
         </div>
       </CardHeader>
       <CardContent>
-        <div className="text-3xl font-bold tracking-tight text-foreground">
+        <div className="text-4xl font-bold tracking-tight text-foreground">
           {value}
         </div>
       </CardContent>
