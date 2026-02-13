@@ -10,7 +10,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Creator Dashboard',
   description: 'Manage and monitor your creators with advanced sorting and filtering',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
